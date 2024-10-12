@@ -46,7 +46,3 @@ nbdist/
 # Windows
 Thumbs.db
 ehthumbs.db
-
-/fronted/node_modules
-/fronted/build
-/fronted/dist
