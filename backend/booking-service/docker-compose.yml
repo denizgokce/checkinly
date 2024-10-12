@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  booking-service:
+    build: .
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://booking-db:27017/bookingdb
+    depends_on:
+      - booking-db
+
+  booking-db:
+    image: mongo:latest
+    ports:
+      - "27018:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=bookingdb

@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  hotel-service:
+    build: .
+    ports:
+      - "8084:8084"
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://hotel-db:27017/hoteldb
+      - SPRING_REDIS_HOST=redis
+      - SPRING_REDIS_PORT=6379
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+    depends_on:
+      - hotel-db
+      - redis
+
+  hotel-db:
+    image: mongo:latest
+    environment:
+      - MONGO_INITDB_DATABASE=hoteldb
+    ports:
+      - "27019:27017"
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
